@@ -11,7 +11,7 @@ public class MessageListener implements MessageCreateListener {
         Message message=event.getMessage();
         Parser preparser=new Parser(event.getMessageContent());
         preparser.preParse();
-        System.out.println("New Message from"+message.getAuthor().getDiscriminatedName()+", type "+preparser.type);
+        System.out.println("New Message from "+message.getAuthor().getDiscriminatedName()+", '"+message.getContent()+"'\ntype "+preparser.type);
         switch(preparser.type){
             case EXAM:
                 InputVal val=new InputVal(preparser.type,message);
@@ -32,6 +32,9 @@ public class MessageListener implements MessageCreateListener {
                 Messages.ping().send(message.getChannel());
                 break;
             case NONE:
+                break;
+            case MENTION:
+                Messages.help().send(message.getChannel());
                 break;
             default:
                 break;

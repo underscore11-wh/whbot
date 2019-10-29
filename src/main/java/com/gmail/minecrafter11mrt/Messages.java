@@ -30,12 +30,15 @@ public class Messages {
                         .addField("Previous Attempts", attempts)
                         .addField("Other Information", other));
     }
-    static MessageBuilder ping(){return new MessageBuilder().append("Pong!");}
+    static MessageBuilder ping(){
+        return new MessageBuilder().append("Pong!");
+    }
     static MessageBuilder badformat(){
         return new MessageBuilder().setEmbed(
                 new EmbedBuilder()
                     .setTitle("Invalid Format")
                     .setDescription("Format: `-exam <Timezone Code> <Attempts at exam> <Any other info>`\nExample: `-exam PST 0 I'm a bit of a slow learner`")
-                    .setColor(Color.RED));
+                    .setColor(Color.RED)
+                    .addField("Dev Note","Expect changes to this format, it's not that great atm"));
     }
 }

@@ -15,7 +15,10 @@ public class Parser {
             type = Type.HELP;
         } else if (content.startsWith("-ping")) {
             type = Type.PING;
-        } else {
+        } else if(content.startsWith("<@!"+Main.api.getYourself().getIdAsString()+">")){
+            type = Type.MENTION;
+        }
+        else {
             type = Type.NONE;
         }
         return type;
