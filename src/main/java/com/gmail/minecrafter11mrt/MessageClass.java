@@ -11,7 +11,7 @@ public class MessageClass implements MessageCreateListener {
         Message message = event.getMessage();
         String content = message.getContent();
         if (message.getContent().equalsIgnoreCase("-ping")) {
-            event.getChannel().sendMessage("Pong!");
+            Messages.ping().send(message.getChannel());
         }
         if (message.getContent().startsWith("-exam")){
             System.out.println(message.getAuthor().getDiscriminatedName()+" sent message "+message.getContent());

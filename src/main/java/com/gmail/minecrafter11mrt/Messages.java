@@ -7,7 +7,7 @@ import org.javacord.api.entity.message.MessageBuilder;
 import java.awt.*;
 
 public class Messages {
-    public static MessageBuilder help(){
+    static MessageBuilder help(){
         return new MessageBuilder().setEmbed(
                 new EmbedBuilder()
                         .setTitle("Exambot")
@@ -20,7 +20,7 @@ public class Messages {
         );
     }
 
-    public static MessageBuilder newrequest(MessageAuthor user, String tz, String attempts, String other){
+     static MessageBuilder newrequest(MessageAuthor user, String tz, String attempts, String other){
         return new MessageBuilder()
                 .setEmbed(new EmbedBuilder()
                         .setTitle("New Exam Request")
@@ -30,4 +30,5 @@ public class Messages {
                         .addField("Previous Attempts", attempts)
                         .addField("Other Information", other));
     }
+    static MessageBuilder ping(){return new MessageBuilder().append("Pong!");}
 }
