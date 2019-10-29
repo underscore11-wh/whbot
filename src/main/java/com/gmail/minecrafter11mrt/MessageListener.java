@@ -14,6 +14,11 @@ public class MessageListener implements MessageCreateListener {
         System.out.println("New Message from"+message.getAuthor().getDiscriminatedName()+", type "+preparser.type);
         switch(preparser.type){
             case EXAM:
+                InputVal val=new InputVal(preparser.type,message);
+                if(!val.lengthcheck()){
+                    Messages.badformat().send(message.getChannel());
+                    break;
+                }
                 preparser.trim();
                 System.out.println("Trimmed message to "+preparser.content);
                 ExamLogic logic=new ExamLogic(preparser,message);

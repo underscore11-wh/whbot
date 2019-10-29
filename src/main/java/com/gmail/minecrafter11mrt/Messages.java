@@ -31,4 +31,11 @@ public class Messages {
                         .addField("Other Information", other));
     }
     static MessageBuilder ping(){return new MessageBuilder().append("Pong!");}
+    static MessageBuilder badformat(){
+        return new MessageBuilder().setEmbed(
+                new EmbedBuilder()
+                    .setTitle("Invalid Format")
+                    .setDescription("Format: `-exam <Timezone Code> <Attempts at exam> <Any other info>`\nExample: `-exam PST 0 I'm a bit of a slow learner`")
+                    .setColor(Color.RED));
+    }
 }
