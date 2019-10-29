@@ -26,7 +26,7 @@ public class MessageClass implements MessageCreateListener {
                             .addField("Previous Attempts", message.getContent().substring(10, 11))
                             .addField("Other Information", message.getContent().substring(12)));
                 requestembed.send(message.getChannel());
-                Exambot.api.getTextChannelById(638474520654512128L).ifPresent(textChannel -> requestembed.append("MENTION").send(textChannel));
+                Main.api.getTextChannelById(638474520654512128L).ifPresent(textChannel -> requestembed.append("MENTION").send(textChannel));
         }
         if (message.getContent().startsWith("-help")){
             Messages.help().send(message.getChannel());
