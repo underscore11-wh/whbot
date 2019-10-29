@@ -12,14 +12,6 @@ public class MessageClass implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         Message message = event.getMessage();
-        EmbedBuilder helpembed = new EmbedBuilder()
-                .setTitle("Exambot")
-                .setFooter("Exambot v0.1 | Made by _11#8218", "https://cdn.discordapp.com/avatars/404882575543238656/238ea9cb4c0835a5a794fa7d93357320.png")
-                .addField("-help", "Displays this message.")
-                .addField("-exam", "Requests a train driving exam.\nFormat: `-exam <Timezone Code> <Attempts at exam> <Any other info>`\nExample: `-exam PST 0 I'm a bit of a slow learner`")
-                .addField("-ping", "Makes the bot send a message back. Intended for debugging.")
-                .setColor(Color.GREEN)
-                .setThumbnail(Exambot.api.getYourself().getAvatar());
         if (message.getContent().equalsIgnoreCase("-ping")) {
             event.getChannel().sendMessage("Pong!");
         }
@@ -37,9 +29,7 @@ public class MessageClass implements MessageCreateListener {
                 Exambot.api.getTextChannelById(638474520654512128L).ifPresent(textChannel -> requestembed.append("MENTION").send(textChannel));
         }
         if (message.getContent().startsWith("-help")){
-            new MessageBuilder()
-                    .setEmbed(helpembed)
-                    .send(message.getChannel());
+            Messages.help().send(message.getChannel());
         }
     }
 }
