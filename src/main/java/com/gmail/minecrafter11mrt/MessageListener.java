@@ -1,6 +1,6 @@
 package com.gmail.minecrafter11mrt;
 
-import org.javacord.api.listener.message.MessageCreateListener;
+import org.javacord.api.listener.message.*;
 import org.javacord.api.entity.message.Message;
 import org.javacord.api.event.message.MessageCreateEvent;
 
@@ -10,10 +10,17 @@ public class MessageListener implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent event){
         Message message=event.getMessage();
         Parser preparser=new Parser(event.getMessageContent());
-        Type command=preparser.preParse();
+        preparser.preParse();
         switch(preparser.type){
             case EXAM:
-
+                preparser.trim();
+                ExamParser parser=new ExamParser(preparser);
+                Messages.newrequest(message.getAuthor(),parser.timezone,parser.attempts,parser.other)
+                        .append("Request Submitted!")
+                        .send(message.getChannel());
+                Messages.newrequest(message.getAuthor(),parser.timezone,parser.attempts,parser.other)
+                        .append("ROLE TAG")
+                        .send(Main.logchannel);
                 break;
             case HELP:
                 Messages.help().send(message.getChannel());
