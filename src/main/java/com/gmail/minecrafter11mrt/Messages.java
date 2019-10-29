@@ -1,6 +1,6 @@
 package com.gmail.minecrafter11mrt;
 
-import org.javacord.api.entity.message.Message;
+import org.javacord.api.entity.message.MessageAuthor;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.message.MessageBuilder;
 
@@ -18,5 +18,16 @@ public class Messages {
                         .setColor(Color.GREEN)
                         .setThumbnail(Main.api.getYourself().getAvatar())
         );
+    }
+
+    public static MessageBuilder newrequest(MessageAuthor user, String tz, String attempts, String other){
+        return new MessageBuilder()
+                .setEmbed(new EmbedBuilder()
+                        .setTitle("New Exam Request")
+                        .addField("Requester", "<@"+user.getIdAsString()+">")
+                        .setThumbnail(user.getAvatar())
+                        .addField("Timezone", tz)
+                        .addField("Previous Attempts", attempts)
+                        .addField("Other Information", other));
     }
 }
