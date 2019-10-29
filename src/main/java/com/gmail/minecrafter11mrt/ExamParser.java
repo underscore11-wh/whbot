@@ -5,8 +5,8 @@ public class ExamParser {
     String timezone;
     String other;
     public ExamParser(Parser parser){
-        timezone=parser.content.substring(6,9);
-        attempts=parser.content.substring(10,11);
-        other=parser.content.substring(12);
+        timezone=parser.content.substring(0,3);
+        attempts=parser.content.substring(4,5);
+        other=parser.content.substring(6);
     }
 }

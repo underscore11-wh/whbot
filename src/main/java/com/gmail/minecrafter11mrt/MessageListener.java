@@ -11,10 +11,13 @@ public class MessageListener implements MessageCreateListener {
         Message message=event.getMessage();
         Parser preparser=new Parser(event.getMessageContent());
         preparser.preParse();
+        System.out.println("New Message from"+message.getAuthor().getDiscriminatedName()+", type "+preparser.type);
         switch(preparser.type){
             case EXAM:
                 preparser.trim();
+                System.out.println("Trimmed message to "+preparser.content);
                 ExamParser parser=new ExamParser(preparser);
+                System.out.println("Parsed results: timezone=`"+parser.timezone+"` attempts=`"+parser.attempts+"` other=`"+parser.other+"`");
                 Messages.newrequest(message.getAuthor(),parser.timezone,parser.attempts,parser.other)
                         .append("Request Submitted!")
                         .send(message.getChannel());

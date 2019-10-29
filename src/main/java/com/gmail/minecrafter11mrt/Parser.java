@@ -24,13 +24,13 @@ public class Parser {
     String trim() {
         switch (type) {
             case EXAM:
-                content=content.substring(5);
+                content=content.substring(6);
                 break;
             case HELP:
-                content=content.substring(5);
+                content=content.substring(6);
                 break;
             case PING:
-                content=content.substring(5);
+                content=content.substring(6);
                 break;
             default:
                 content="";
