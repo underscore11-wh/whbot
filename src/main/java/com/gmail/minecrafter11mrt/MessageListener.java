@@ -16,14 +16,9 @@ public class MessageListener implements MessageCreateListener {
             case EXAM:
                 preparser.trim();
                 System.out.println("Trimmed message to "+preparser.content);
-                ExamParser parser=new ExamParser(preparser);
-                System.out.println("Parsed results: timezone=`"+parser.timezone+"` attempts=`"+parser.attempts+"` other=`"+parser.other+"`");
-                Messages.newrequest(message.getAuthor(),parser.timezone,parser.attempts,parser.other)
-                        .append("Request Submitted!")
-                        .send(message.getChannel());
-                Messages.newrequest(message.getAuthor(),parser.timezone,parser.attempts,parser.other)
-                        .append("ROLE TAG")
-                        .send(Main.logchannel);
+                ExamLogic logic=new ExamLogic(preparser,message);
+                System.out.println("Parsed results: timezone=`"+logic.timezone+"` attempts=`"+logic.attempts+"` other=`"+logic.other+"`");
+                logic.sendMessage();
                 break;
             case HELP:
                 Messages.help().send(message.getChannel());
