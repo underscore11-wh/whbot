@@ -1,18 +1,11 @@
 package com.gmail.minecrafter11mrt;
 
-import org.javacord.api.entity.channel.TextChannel;
-import org.javacord.api.entity.message.embed.Embed;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.listener.message.MessageCreateListener;
 import org.javacord.api.entity.message.Message;
-import org.javacord.api.entity.channel.Channel;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.entity.message.MessageBuilder;
-import org.javacord.api.DiscordApi;
 import java.awt.*;
-import java.io.*;
-import org.javacord.*;
-import java.util.Set;
 
 public class MessageClass implements MessageCreateListener {
 
@@ -26,7 +19,7 @@ public class MessageClass implements MessageCreateListener {
                 .addField("-exam", "Requests a train driving exam.\nFormat: `-exam <Timezone Code> <Attempts at exam> <Any other info>`\nExample: `-exam PST 0 I'm a bit of a slow learner`")
                 .addField("-ping", "Makes the bot send a message back. Intended for debugging.")
                 .setColor(Color.GREEN)
-                .setThumbnail(Main.api.getYourself().getAvatar());
+                .setThumbnail(Exambot.api.getYourself().getAvatar());
         if (message.getContent().equalsIgnoreCase("-ping")) {
             event.getChannel().sendMessage("Pong!");
         }
@@ -35,13 +28,13 @@ public class MessageClass implements MessageCreateListener {
                 MessageBuilder requestembed = new MessageBuilder()
                         .setEmbed(new EmbedBuilder()
                             .setTitle("New Exam Request")
-                            .addField("Requestor", "<@"+message.getAuthor().getIdAsString()+">")
+                            .addField("Requester", "<@"+message.getAuthor().getIdAsString()+">")
                             .setThumbnail(message.getAuthor().getAvatar())
                             .addField("Timezone", message.getContent().substring(6, 9))
                             .addField("Previous Attempts", message.getContent().substring(10, 11))
                             .addField("Other Information", message.getContent().substring(12)));
                 requestembed.send(message.getChannel());
-                Main.api.getTextChannelById(638474520654512128L).ifPresent(textChannel -> requestembed.append("MENTION").send(textChannel));
+                Exambot.api.getTextChannelById(638474520654512128L).ifPresent(textChannel -> requestembed.append("MENTION").send(textChannel));
         }
         if (message.getContent().startsWith("-help")){
             new MessageBuilder()
