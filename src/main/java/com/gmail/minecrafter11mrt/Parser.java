@@ -1,8 +1,12 @@
 package com.gmail.minecrafter11mrt;
 
+import com.gmail.minecrafter11mrt.lib.LogLevel;
+import com.gmail.minecrafter11mrt.lib.Logger;
+
 public class Parser {
     Type type = Type.NONE;
     String content;
+    static Logger logger = new Logger("Parser");
 
     public Parser(String message) {
         content = message;
@@ -39,6 +43,7 @@ public class Parser {
                 content="";
                 break;
         }
+        logger.println("Trimmed message to "+content, LogLevel.DEBUG);
         return content;
     }
 }

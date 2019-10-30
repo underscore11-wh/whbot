@@ -3,10 +3,12 @@ package com.gmail.minecrafter11mrt;
 import org.javacord.api.entity.message.MessageAuthor;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.message.MessageBuilder;
+import com.gmail.minecrafter11mrt.lib.*;
 
 import java.awt.*;
 
 public class Messages {
+    static Logger logger = new Logger("Messages");
     static MessageBuilder help(){
         return new MessageBuilder().setEmbed(
                 new EmbedBuilder()
@@ -31,10 +33,10 @@ public class Messages {
                     .addField("Other Information", other)
                     .setFooter("Exambot "+Main.ver+" | Made by _11#8218", "https://cdn.discordapp.com/avatars/404882575543238656/238ea9cb4c0835a5a794fa7d93357320.png"));
     }
-    static MessageBuilder ping(){
+    static  MessageBuilder ping(){
         return new MessageBuilder().append("Pong!");
     }
-    static MessageBuilder badformat(){
+    static  MessageBuilder badformat(){
         return new MessageBuilder().setEmbed(
                 new EmbedBuilder()
                     .setTitle("Invalid Format")
@@ -44,6 +46,8 @@ public class Messages {
                     .setFooter("Exambot "+Main.ver+" | Made by _11#8218", "https://cdn.discordapp.com/avatars/404882575543238656/238ea9cb4c0835a5a794fa7d93357320.png"));
     }
     static MessageBuilder error(Throwable e){
+        logger.println(e.toString(),LogLevel.WARN);
+        logger.println("Stacktrace below:",LogLevel.WARN);
         e.printStackTrace();
         return new MessageBuilder().setEmbed(new EmbedBuilder()
                 .setColor(Color.RED)

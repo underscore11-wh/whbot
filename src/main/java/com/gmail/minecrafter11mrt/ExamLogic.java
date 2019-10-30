@@ -29,7 +29,7 @@ public class ExamLogic {
             System.out.println("Message ID:"+mid);
             Long mau = message.getAuthor().getId();
             System.out.println("Requester:"+mau);
-            //Main.queuemessages.put(mid, mau);
+            Main.queuemessages.put(mid, mau);
             System.out.println("Done Lambada");
         }).exceptionally(throwable -> {
             Messages.error(throwable).send(message.getChannel());

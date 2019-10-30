@@ -1,5 +1,6 @@
 package com.gmail.minecrafter11mrt;
 
+import com.gmail.minecrafter11mrt.lib.LogLevel;
 import com.gmail.minecrafter11mrt.lib.Logger;
 import org.javacord.api.listener.message.*;
 import org.javacord.api.entity.message.Message;
@@ -13,9 +14,7 @@ public class MessageListener implements MessageCreateListener {
         Logger logger = new Logger("MessageListener");
         Parser preparser=new Parser(event.getMessageContent());
         preparser.preParse();
-        System.out.print(message);
-        System.out.print(message.getAuthor());
-        System.out.println(preparser.type);
+        logger.println(message.getIdAsString()+" "+message.getContent()+" "+message.getAuthor().getDiscriminatedName()+" "+preparser.type,LogLevel.INFO);
         switch(preparser.type){
             case EXAM:
                 InputVal val=new InputVal(preparser.type,message);
@@ -24,9 +23,8 @@ public class MessageListener implements MessageCreateListener {
                     break;
                 }
                 preparser.trim();
-                System.out.println("Trimmed message to "+preparser.content);
                 ExamLogic logic=new ExamLogic(preparser,message);
-                System.out.println("Parsed results: timezone=`"+logic.timezone+"` attempts=`"+logic.attempts+"` other=`"+logic.other+"`");
+                logger.println("Parsed results: timezone=`"+logic.timezone+"` attempts=`"+logic.attempts+"` other=`"+logic.other+"`",LogLevel.DEBUG);
                 logic.sendMessage();
                 break;
             case HELP:

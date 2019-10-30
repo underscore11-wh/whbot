@@ -17,7 +17,7 @@ public class Main {
     static Logger logger = new Logger("Main");
     public static void main(String[] args) {
         logger.setLogLevel(LogLevel.DEBUG);
-        logger.log("Logged in!",LogLevel.INFO);
+        logger.println("Logged in!",LogLevel.INFO);
         api.getTextChannelById(638474520654512128L).ifPresent(textChannel ->{
             logchannel=textChannel;
         });
