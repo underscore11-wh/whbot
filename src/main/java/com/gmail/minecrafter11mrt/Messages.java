@@ -28,7 +28,8 @@ public class Messages {
                     .setThumbnail(user.getAvatar())
                     .addField("Timezone", tz)
                     .addField("Previous Attempts", attempts)
-                    .addField("Other Information", other));
+                    .addField("Other Information", other)
+                    .setFooter("Exambot "+Main.ver+" | Made by _11#8218", "https://cdn.discordapp.com/avatars/404882575543238656/238ea9cb4c0835a5a794fa7d93357320.png"));
     }
     static MessageBuilder ping(){
         return new MessageBuilder().append("Pong!");
@@ -39,6 +40,16 @@ public class Messages {
                     .setTitle("Invalid Format")
                     .setDescription("Format: `-exam <Timezone Code> <Attempts at exam> <Any other info>`\nExample: `-exam PST 0 I'm a bit of a slow learner`")
                     .setColor(Color.RED)
-                    .addField("Dev Note","Expect changes to this format, it's not that great atm"));
+                    .addField("Dev Note","Expect changes to this format, it's not that great atm")
+                    .setFooter("Exambot "+Main.ver+" | Made by _11#8218", "https://cdn.discordapp.com/avatars/404882575543238656/238ea9cb4c0835a5a794fa7d93357320.png"));
+    }
+    static MessageBuilder error(Throwable e){
+        e.printStackTrace();
+        return new MessageBuilder().setEmbed(new EmbedBuilder()
+                .setColor(Color.RED)
+                .setTitle("Something went wrong:")
+                .setDescription(e.toString())
+                .setFooter("Exambot "+Main.ver+" | Made by _11#8218", "https://cdn.discordapp.com/avatars/404882575543238656/238ea9cb4c0835a5a794fa7d93357320.png"))
+                .append(Main.botowner.getMentionTag());
     }
 }

@@ -1,5 +1,6 @@
 package com.gmail.minecrafter11mrt;
 
+import com.gmail.minecrafter11mrt.lib.Logger;
 import org.javacord.api.listener.message.*;
 import org.javacord.api.entity.message.Message;
 import org.javacord.api.event.message.MessageCreateEvent;
@@ -9,9 +10,12 @@ public class MessageListener implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event){
         Message message=event.getMessage();
+        Logger logger = new Logger("MessageListener");
         Parser preparser=new Parser(event.getMessageContent());
         preparser.preParse();
-        System.out.println("New Message from "+message.getAuthor().getDiscriminatedName()+", '"+message+"'\ntype "+preparser.type);
+        System.out.print(message);
+        System.out.print(message.getAuthor());
+        System.out.println(preparser.type);
         switch(preparser.type){
             case EXAM:
                 InputVal val=new InputVal(preparser.type,message);
