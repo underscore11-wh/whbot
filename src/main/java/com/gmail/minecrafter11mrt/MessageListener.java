@@ -11,7 +11,7 @@ public class MessageListener implements MessageCreateListener {
         Message message=event.getMessage();
         Parser preparser=new Parser(event.getMessageContent());
         preparser.preParse();
-        System.out.println("New Message from "+message.getAuthor().getDiscriminatedName()+", '"+message.getContent()+"'\ntype "+preparser.type);
+        System.out.println("New Message from "+message.getAuthor().getDiscriminatedName()+", '"+message+"'\ntype "+preparser.type);
         switch(preparser.type){
             case EXAM:
                 InputVal val=new InputVal(preparser.type,message);
