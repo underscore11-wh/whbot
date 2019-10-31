@@ -1,19 +1,24 @@
 package com.gmail.minecrafter11mrt;
 
-import com.gmail.minecrafter11mrt.lib.Logger;
 import org.javacord.api.entity.message.Message;
 
-public class ExamLogic {
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+class ExamLogic {
     String attempts;
     String timezone;
     String other;
-    Message message;
-    Logger logger = new Logger("Examlogic");
-    public ExamLogic(Parser parser, Message mes){
+    private Message message;
+    private static Logger logger = Logger.getLogger("ExamLogic");
+    ExamLogic(Parser parser, Message mes){
+        Main.initLogger(logger);
         timezone=parser.content.substring(0,3);
         attempts=parser.content.substring(4,5);
         other=parser.content.substring(6);
         message=mes;
+        logger.log(Level.FINER,"New ExamLogic initialized",this);
     }
     void sendMessage() {
         Messages.newrequest(message.getAuthor(), timezone, attempts, other)
@@ -22,19 +27,20 @@ public class ExamLogic {
         Messages.newrequest(message.getAuthor(), timezone, attempts, other)
                 .append("ROLE TAG")
                 .send(Main.logchannel);
-        System.out.println("Entering Lambada");
+        long[] pair={0,0};
+        logger.log(Level.FINER,"Entering Lambada");
         Messages.newrequest(message.getAuthor(), timezone, attempts, other).send(Main.queuechannel).thenAcceptAsync(queuemessage ->{
-            System.out.println("In Lambada");
-            Long mid=queuemessage.getId();
-            System.out.println("Message ID:"+mid);
-            Long mau = message.getAuthor().getId();
-            System.out.println("Requester:"+mau);
-            Main.queuemessages.put(mid, mau);
-            System.out.println("Done Lambada");
+            logger.log(Level.FINER,"In Lambada");
+            pair[0]=queuemessage.getId();
+            logger.log(Level.FINER,"Message ID:"+pair[0]);
+            pair[1]=message.getAuthor().getId();
+            logger.log(Level.FINER,"Requester:"+pair[1]);
+            logger.log(Level.FINER,"Done Lambada");
         }).exceptionally(throwable -> {
-            Messages.error(throwable).send(message.getChannel());
+            Messages.error(throwable, logger).send(message.getChannel());
             return null;
         });
+        Main.addQueuedMessage(pair[0],pair[1]);
     }
 }
 

@@ -1,14 +1,18 @@
 package com.gmail.minecrafter11mrt;
 
-import com.gmail.minecrafter11mrt.lib.LogLevel;
-import com.gmail.minecrafter11mrt.lib.Logger;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Parser {
+class Parser {
     Type type = Type.NONE;
     String content;
-    static Logger logger = new Logger("Parser");
+    private static Logger logger = Logger.getLogger("Parser");
 
-    public Parser(String message) {
+    Parser(String message) {
+        Main.initLogger(logger);
+        logger.log(Level.FINER,"New Parser initialized",this);
         content = message;
     }
 
@@ -43,7 +47,7 @@ public class Parser {
                 content="";
                 break;
         }
-        logger.println("Trimmed message to "+content, LogLevel.DEBUG);
+        logger.log(Level.FINER,"Trimmed message to "+content);
         return content;
     }
 }
