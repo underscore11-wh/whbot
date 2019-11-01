@@ -32,7 +32,7 @@ public class MessageListener implements MessageCreateListener {
                 break;
             case SHUTDOWN:
                 if(message.getAuthor().getId()==Main.botowner.getId()){
-                    Messages.shutdown();
+                    Messages.shutdown().send(message.getChannel());
                     Main.shutdown();
                 }else {
                     Messages.permissionError();

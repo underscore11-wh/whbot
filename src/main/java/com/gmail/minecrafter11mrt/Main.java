@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
-    static String ver = "v0.3.1";
+    static String ver = "v0.4";
     static DiscordApi api;
     static TextChannel logchannel;
     static User botowner;

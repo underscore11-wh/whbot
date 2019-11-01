@@ -61,6 +61,7 @@ class Messages {
                 .setColor(Color.GREEN)
                 .setTitle("Changelog")
                 .setDescription("Latest version: "+Main.ver)
+                .addField("v0.4","Added `-shutdown`")
                 .addField("v0.3","Removed queue channel functionality\nAdded `-changelog`"));
     }
     static MessageBuilder shutdown(){
