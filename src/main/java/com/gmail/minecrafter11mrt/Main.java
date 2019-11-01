@@ -15,7 +15,7 @@ import org.bukkit.configuration.*;
 
 public class Main {
     static String ver = "v0.3.1";
-    static DiscordApi api = new DiscordApiBuilder().setToken("NjM4NDQwODEwMDgxMTU3MTIw.Xbe3LA.RJALW-FQVU3KoM01JmWUHjobmyM").login().join();
+    static DiscordApi api;
     static TextChannel logchannel;
     static User botowner;
     private static Logger logger = Logger.getLogger("Main");
@@ -23,6 +23,8 @@ public class Main {
     FileConfiguration config;
     public static void main(String[] args) {
         Main.initLogger(logger);
+        logger.log(Level.INFO,"Logging in with token "+args[0]);
+        api = new DiscordApiBuilder().setToken(args[0]).login().join();
         logger.log(Level.INFO,"Logged in!");
         logger.log(Level.INFO,"Running Exambot "+ver);
         api.getTextChannelById(638474520654512128L).ifPresent(textChannel ->{
@@ -44,5 +46,9 @@ public class Main {
             otherLogger.addHandler(handler);
         }
         //System.out.println("Active handlers for "+otherLogger.getName()+": "+otherLogger.getHandlers().length);
+    }
+    static void shutdown(){
+        api.disconnect();
+        System.exit(0);
     }
 }
