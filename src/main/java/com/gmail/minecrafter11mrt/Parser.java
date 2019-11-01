@@ -25,8 +25,9 @@ class Parser {
             type = Type.PING;
         } else if(content.startsWith("<@!"+Main.api.getYourself().getIdAsString()+">")){
             type = Type.MENTION;
-        }
-        else {
+        } else if(content.startsWith("-changelog")){
+            type = Type.CHANGELOG;
+        } else{
             type = Type.NONE;
         }
         return type;

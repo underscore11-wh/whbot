@@ -27,20 +27,6 @@ class ExamLogic {
         Messages.newrequest(message.getAuthor(), timezone, attempts, other)
                 .append("ROLE TAG")
                 .send(Main.logchannel);
-        long[] pair={0,0};
-        logger.log(Level.FINER,"Entering Lambada");
-        Messages.newrequest(message.getAuthor(), timezone, attempts, other).send(Main.queuechannel).thenAcceptAsync(queuemessage ->{
-            logger.log(Level.FINER,"In Lambada");
-            pair[0]=queuemessage.getId();
-            logger.log(Level.FINER,"Message ID:"+pair[0]);
-            pair[1]=message.getAuthor().getId();
-            logger.log(Level.FINER,"Requester:"+pair[1]);
-            logger.log(Level.FINER,"Done Lambada");
-        }).exceptionally(throwable -> {
-            Messages.error(throwable, logger).send(message.getChannel());
-            return null;
-        });
-        Main.addQueuedMessage(pair[0],pair[1]);
     }
 }
 

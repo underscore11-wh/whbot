@@ -4,6 +4,7 @@ public enum Type {
     EXAM,
     HELP,
     PING,
+    CHANGELOG,
     MENTION,
     NONE
 }

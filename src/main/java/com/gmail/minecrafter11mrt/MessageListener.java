@@ -36,6 +36,8 @@ public class MessageListener implements MessageCreateListener {
             case PING:
                 Messages.ping().send(message.getChannel());
                 break;
+            case CHANGELOG:
+                Messages.changelog().send(message.getChannel());
             case NONE:
                 break;
             case MENTION:

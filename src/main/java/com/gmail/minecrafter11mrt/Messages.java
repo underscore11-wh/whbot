@@ -54,7 +54,13 @@ class Messages {
                 .setDescription(e.toString()))
                 .append(Main.botowner.getMentionTag());
     }
-    static private EmbedBuilder baseEmbed = new EmbedBuilder()
-            .setFooter("Exambot "+Main.ver+" | Made by _11#8218", Main.botowner.getAvatar())
-            .setTimestampToNow();
+    static MessageBuilder changelog(){
+        return new MessageBuilder().setEmbed(new EmbedBuilder()
+                .setFooter("Exambot "+Main.ver+" | Made by _11#8218", Main.botowner.getAvatar())
+                .setTimestampToNow()
+                .setColor(Color.GREEN)
+                .setTitle("Changelog")
+                .setDescription("Latest version: "+Main.ver)
+                .addField("v0.3","Removed queue channel functionality\nAdded `-changelog`"));
+    }
 }
