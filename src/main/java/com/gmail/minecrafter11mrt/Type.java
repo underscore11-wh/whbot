@@ -6,5 +6,6 @@ public enum Type {
     PING,
     CHANGELOG,
     MENTION,
+    SHUTDOWN,
     NONE
 }

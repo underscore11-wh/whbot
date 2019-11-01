@@ -63,4 +63,19 @@ class Messages {
                 .setDescription("Latest version: "+Main.ver)
                 .addField("v0.3","Removed queue channel functionality\nAdded `-changelog`"));
     }
+    static MessageBuilder shutdown(){
+        return new MessageBuilder().setEmbed(new EmbedBuilder()
+                .setFooter("Exambot "+Main.ver+" | Made by _11#8218", Main.botowner.getAvatar())
+                .setTimestampToNow()
+                .setColor(Color.RED)
+                .setTitle("Shutting Down"));
+    }
+    static MessageBuilder permissionError(){
+        return new MessageBuilder().setEmbed(new EmbedBuilder()
+                .setFooter("Exambot "+Main.ver+" | Made by _11#8218", Main.botowner.getAvatar())
+                .setTimestampToNow()
+                .setColor(Color.RED)
+                .setTitle("Permission Error")
+                .setDescription("You do not have permission to execute that command."));
+    }
 }

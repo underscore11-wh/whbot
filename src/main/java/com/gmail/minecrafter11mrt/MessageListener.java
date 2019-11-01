@@ -30,6 +30,14 @@ public class MessageListener implements MessageCreateListener {
                 logger.log(Level.FINER,"Parsed results: timezone=`"+logic.timezone+"` attempts=`"+logic.attempts+"` other=`"+logic.other+"`");
                 logic.sendMessage();
                 break;
+            case SHUTDOWN:
+                if(message.getAuthor().getId()==Main.botowner.getId()){
+                    Messages.shutdown();
+                    Main.shutdown();
+                }else {
+                    Messages.permissionError();
+                    logger.log(Level.INFO,message.getAuthor().getDiscriminatedName()+" attempted to run -shutdown");
+                }
             case HELP:
                 Messages.help().send(message.getChannel());
                 break;

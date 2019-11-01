@@ -27,6 +27,8 @@ class Parser {
             type = Type.MENTION;
         } else if(content.startsWith("-changelog")){
             type = Type.CHANGELOG;
+        } else if(content.startsWith("-shutdown")){
+            type = Type.SHUTDOWN;
         } else{
             type = Type.NONE;
         }
