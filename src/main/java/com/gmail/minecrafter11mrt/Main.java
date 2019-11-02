@@ -1,6 +1,4 @@
 package com.gmail.minecrafter11mrt;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.channel.TextChannel;
@@ -11,16 +9,15 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.bukkit.configuration.*;
+import com.esotericsoftware.*;
 
 public class Main {
-    static String ver = "v0.3.1";
+    static String ver = "v0.5.1";
     static DiscordApi api;
     static TextChannel logchannel;
     static User botowner;
     private static Logger logger = Logger.getLogger("Main");
     private static Level loglevel=Level.FINEST;
-    FileConfiguration config;
     public static void main(String[] args) {
         Main.initLogger(logger);
         logger.log(Level.INFO,"Logging in with token "+args[0]);

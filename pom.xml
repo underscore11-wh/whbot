@@ -6,7 +6,7 @@
 
     <groupId>com.gmail.minecrafter11mrt</groupId>
     <artifactId>exambot</artifactId>
-    <version>0.3</version>
+    <version>0.5</version>
     <build>
         <plugins>
             <plugin>
@@ -48,12 +48,6 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>spigotmc-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.javacord</groupId>
@@ -62,10 +56,9 @@
             <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.13-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
+            <groupId>com.esotericsoftware.yamlbeans</groupId>
+            <artifactId>yamlbeans</artifactId>
+            <version>1.13</version>
         </dependency>
     </dependencies>
 
