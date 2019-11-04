@@ -1,9 +1,7 @@
 package com.gmail.minecrafter11mrt;
 
-import org.bukkit.plugin.PluginLogger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
-import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.user.User;
 
 import java.util.logging.Level;
@@ -12,7 +10,7 @@ import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class WHBot extends JavaPlugin {
-    static String ver = "v0.1.2";
+    static String ver = "v0.1.3";
     static DiscordApi api;
     static User botowner;
     static Logger logger;
