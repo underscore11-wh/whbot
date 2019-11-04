@@ -14,7 +14,6 @@ class Messages {
                 .setTimestampToNow()
                 .setTitle("WHBot")
                 .addField("-help", "Displays this message.")
-                .addField("-exam", "Requests a train driving exam.\nFormat: `-exam <Timezone Code> <Attempts at exam> <Any other info>`\nExample: `-exam PST 0 I'm a bit of a slow learner`")
                 .addField("-ping", "Makes the bot send a message back. Intended for debugging.")
                 .setColor(Color.GREEN)
                 .setThumbnail(WHBot.api.getYourself().getAvatar())
