@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class WHBot extends JavaPlugin {
-    static String ver = "v0.1.1";
+    static String ver = "v0.1.2";
     static DiscordApi api;
     static User botowner;
     static Logger logger;
