@@ -50,8 +50,11 @@ class Parser {
         return trimmed;
     }
     String[] splitArgs(){
-        args=trim().split("|");
-        WHBot.logger.log(Level.INFO,"Split Message '"+content+"' into "+args);
+        args=content.split("\u0093");
+        WHBot.logger.log(Level.INFO,"Split Message '"+content+"' into:");
+        for(String value : args){
+            System.out.println(value);
+        }
         return args;
     }
 }
