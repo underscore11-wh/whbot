@@ -10,7 +10,7 @@ class Parser {
     String[] args;
 
     Parser(String message) {
-        WHBot.logger.log(Level.INFO,"New Parser initialized",this);
+        WHBot.logger.log(Level.INFO,"New Parser initialized",message);
         content = message;
     }
 
@@ -46,11 +46,11 @@ class Parser {
                 trimmed="";
                 break;
         }
-        WHBot.logger.log(Level.INFO,"Trimmed message to "+content);
+        WHBot.logger.log(Level.INFO,"Trimmed message to "+trimmed);
         return trimmed;
     }
     String[] splitArgs(){
-        args=content.split("\u0093");
+        args=trimmed.split("\u0093");
         WHBot.logger.log(Level.INFO,"Split Message '"+content+"' into:");
         for(String value : args){
             System.out.println(value);

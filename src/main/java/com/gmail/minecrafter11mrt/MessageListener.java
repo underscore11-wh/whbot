@@ -11,6 +11,7 @@ public class MessageListener implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event){
         Message message=event.getMessage();
+        WHBot.logger.log(Level.INFO,"Message Received:"+message.getContent());
         Parser preparser=new Parser(event.getMessageContent());
         preparser.preParse();
         WHBot.logger.log(Level.FINE,message.getIdAsString()+" "+message.getContent()+" "+message.getAuthor().getDiscriminatedName()+" "+preparser.type);
