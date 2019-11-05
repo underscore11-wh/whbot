@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class WHBot extends JavaPlugin {
-    static String ver = "v0.2.2";
+    static String ver = "v0.2.3";
     static DiscordApi api;
     static User botowner;
     static Logger logger;
@@ -22,6 +22,7 @@ public class WHBot extends JavaPlugin {
         logger=getLogger();
         this.saveDefaultConfig();
         loglevel=Level.parse(this.getConfig().getString("loglevel"));
+        logger.setLevel(loglevel);
         String token=this.getConfig().getString("token");
         logger.log(Level.INFO,"Logging in with token "+token);
         api = new DiscordApiBuilder().setToken(token).login().join();
