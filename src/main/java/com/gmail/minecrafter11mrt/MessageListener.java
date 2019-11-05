@@ -23,8 +23,10 @@ public class MessageListener implements MessageCreateListener {
                 break;
             case CITIZENSHIP:
                 CitLogic logic = new CitLogic(message, preparser);
+                break;
             case CHANGELOG:
                 Messages.changelog().send(message.getChannel());
+                break;
             case NONE:
                 break;
             case MENTION:

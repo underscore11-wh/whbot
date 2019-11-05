@@ -12,12 +12,13 @@ public class CitLogic {
         m=message;
         p=parser;
         String[] args=p.splitArgs();
-        username=args[0];
-        pastOffenses=args[1];
-        final MessageBuilder requestMessage;
-        message.getAuthor().asUser().ifPresent(user -> {
-            Messages.citRequest(message.getAttachments().get(0).getUrl().toString(),username,pastOffenses,user).send(WHBot.borderForce);
-        });
+        if(inputValidation(args,m)) {
+            username = args[0];
+            pastOffenses = args[1];
+            message.getAuthor().asUser().ifPresent(user -> {
+                Messages.citRequest(message.getAttachments().get(0).getUrl().toString(), username, pastOffenses, user).send(WHBot.borderForce);
+            });
+        }
     }
     private boolean inputValidation(String[] args,Message message){
         if(args.length==0){
