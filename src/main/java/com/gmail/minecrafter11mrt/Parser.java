@@ -50,6 +50,9 @@ class Parser {
             case CHANGELOG:
                 trimmed=content.substring(12);
                 break;
+            case CITIZENSHIP:
+                trimmed=content.substring(13);
+                break;
             default:
                 trimmed="";
                 break;
@@ -57,9 +60,10 @@ class Parser {
         WHBot.logger.log(Level.INFO,"Trimmed message to "+trimmed);
         return trimmed;
     }
-    String[] splitArgs(){
-        args=trimmed.split("\u0093");
-        WHBot.logger.log(Level.INFO,"Split Message '"+content+"' into:");
+    String[] splitArgs(int argLimit){
+        trim();
+        args=trimmed.split(" ",argLimit);
+        WHBot.logger.log(Level.INFO,"Split Message '"+trimmed+"' into:");
         for(String value : args){
             System.out.println(value);
         }

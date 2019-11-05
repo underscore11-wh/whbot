@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class WHBot extends JavaPlugin {
-    static String ver = "v0.2.11";
+    static String ver = "v0.2.17";
     static DiscordApi api;
     static User botowner;
     static Logger logger;
@@ -19,6 +19,7 @@ public class WHBot extends JavaPlugin {
     static Level loglevel;
     @Override
     public void onEnable() {
+        long startTime=System.currentTimeMillis();
         logger=getLogger();
         this.saveDefaultConfig();
         loglevel=Level.FINEST;
@@ -37,6 +38,8 @@ public class WHBot extends JavaPlugin {
         });
         api.addListener(new MessageListener());
         api.updateActivity("-help | "+ver);
+        long totaltime=startTime-System.currentTimeMillis();
+        logger.log(Level.INFO,"Done! Init took "+totaltime+"ms");
     }
     @Override
     public void onDisable() {

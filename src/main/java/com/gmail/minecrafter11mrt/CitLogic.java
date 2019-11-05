@@ -11,7 +11,7 @@ public class CitLogic {
     public CitLogic(Message message, Parser parser){
         m=message;
         p=parser;
-        String[] args=p.splitArgs();
+        String[] args=p.splitArgs(2);
         if(inputValidation(args,m)) {
             username = args[0];
             pastOffenses = args[1];
