@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class WHBot extends JavaPlugin {
-    static String ver = "v0.2.4";
+    static String ver = "v0.2.5";
     static DiscordApi api;
     static User botowner;
     static Logger logger;
@@ -21,8 +21,8 @@ public class WHBot extends JavaPlugin {
     public void onEnable() {
         logger=getLogger();
         this.saveDefaultConfig();
-        loglevel=Level.parse(this.getConfig().getString("loglevel"));
-        logger.setLevel(loglevel);
+        loglevel=Level.FINEST;
+        this.getLogger().setLevel(loglevel);
         String token=this.getConfig().getString("token");
         logger.log(Level.INFO,"Logging in with token "+token);
         api = new DiscordApiBuilder().setToken(token).login().join();
@@ -30,7 +30,7 @@ public class WHBot extends JavaPlugin {
         logger.log(Level.INFO,"Running WHBot "+ver);
         api.getOwner().thenAccept(owner ->{
             botowner=owner;
-            logger.log(Level.FINE,"Botowner intialized",botowner);
+            logger.log(Level.INFO,"Botowner intialized",botowner);
         });
         api.getTextChannelById(this.getConfig().getLong("channels.border-force")).ifPresent(textChannel -> {
             borderForce=textChannel;

@@ -10,7 +10,7 @@ class Parser {
     String[] args;
 
     Parser(String message) {
-        WHBot.logger.log(Level.FINER,"New Parser initialized",this);
+        WHBot.logger.log(Level.INFO,"New Parser initialized",this);
         content = message;
     }
 
@@ -46,12 +46,12 @@ class Parser {
                 trimmed="";
                 break;
         }
-        WHBot.logger.log(Level.FINER,"Trimmed message to "+content);
+        WHBot.logger.log(Level.INFO,"Trimmed message to "+content);
         return content;
     }
     String[] splitArgs(){
         args=trim().split("|");
-        WHBot.logger.log(Level.FINER,"Split Message '"+content+"' into "+args);
+        WHBot.logger.log(Level.INFO,"Split Message '"+content+"' into "+args);
         return args;
     }
 }
