@@ -47,7 +47,7 @@ class Parser {
                 break;
         }
         WHBot.logger.log(Level.INFO,"Trimmed message to "+content);
-        return content;
+        return trimmed;
     }
     String[] splitArgs(){
         args=trim().split("|");
