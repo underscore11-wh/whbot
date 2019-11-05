@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 class Parser {
     Type type = Type.NONE;
     String content;
+    String trimmed;
+    String[] args;
 
     Parser(String message) {
         WHBot.logger.log(Level.FINER,"New Parser initialized",this);
@@ -17,10 +19,12 @@ class Parser {
             type = Type.HELP;
         } else if (content.startsWith("-ping")) {
             type = Type.PING;
-        } else if(content.startsWith("<@!"+Main.api.getYourself().getIdAsString()+">")){
+        } else if(content.startsWith("<@!"+WHBot.api.getYourself().getIdAsString()+">")){
             type = Type.MENTION;
         } else if(content.startsWith("-changelog")){
             type = Type.CHANGELOG;
+        } else if(content.startsWith("-citizenship")){
+            type = Type.CITIZENSHIP;
         } else{
             type = Type.NONE;
         }
@@ -30,16 +34,24 @@ class Parser {
     String trim() {
         switch (type) {
             case HELP:
-                content=content.substring(6);
+                trimmed=content.substring(6);
                 break;
             case PING:
-                content=content.substring(6);
+                trimmed=content.substring(6);
+                break;
+            case CHANGELOG:
+                trimmed=content.substring(12);
                 break;
             default:
-                content="";
+                trimmed="";
                 break;
         }
         WHBot.logger.log(Level.FINER,"Trimmed message to "+content);
         return content;
+    }
+    String[] splitArgs(){
+        args=trim().split("|");
+        WHBot.logger.log(Level.FINER,"Split Message '"+content+"' into "+args);
+        return args;
     }
 }

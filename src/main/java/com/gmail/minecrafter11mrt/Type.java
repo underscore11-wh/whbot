@@ -5,5 +5,6 @@ public enum Type {
     PING,
     CHANGELOG,
     MENTION,
+    CITIZENSHIP,
     NONE
 }

@@ -21,6 +21,8 @@ public class MessageListener implements MessageCreateListener {
             case PING:
                 Messages.ping().send(message.getChannel());
                 break;
+            case CITIZENSHIP:
+                CitLogic logic = new CitLogic(message, preparser);
             case CHANGELOG:
                 Messages.changelog().send(message.getChannel());
             case NONE:
