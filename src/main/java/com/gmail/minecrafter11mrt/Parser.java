@@ -1,5 +1,7 @@
 package com.gmail.minecrafter11mrt;
 
+import org.javacord.api.entity.message.Message;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -8,10 +10,16 @@ class Parser {
     String content;
     String trimmed;
     String[] args;
+    Message m;
 
-    Parser(String message) {
-        WHBot.logger.log(Level.INFO,"New Parser initialized",message);
-        content = message;
+    Parser(Message message) {
+        try {
+            m=message;
+            content = message.getContent();
+        }catch (Exception e){
+            Messages.error(e,WHBot.logger).send(message.getChannel());
+        }
+        WHBot.logger.log(Level.INFO,"New Parser initialized ",content);
     }
 
     Type preParse() {

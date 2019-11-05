@@ -12,9 +12,10 @@ public class MessageListener implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent event){
         Message message=event.getMessage();
         WHBot.logger.log(Level.INFO,"Message Received:"+message.getContent());
-        Parser preparser=new Parser(event.getMessageContent());
+        Parser preparser=new Parser(message);
+        WHBot.logger.log(Level.INFO,"Attempting to preparse message "+preparser.content);
         preparser.preParse();
-        WHBot.logger.log(Level.FINE,message.getIdAsString()+" "+message.getContent()+" "+message.getAuthor().getDiscriminatedName()+" "+preparser.type);
+        WHBot.logger.log(Level.INFO,message.getIdAsString()+" "+message.getContent()+" "+message.getAuthor().getDiscriminatedName()+" "+preparser.type);
         switch(preparser.type){
             case HELP:
                 Messages.help().send(message.getChannel());
