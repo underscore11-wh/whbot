@@ -62,11 +62,12 @@ class Parser {
     }
     String[] splitArgs(int argLimit){
         trim();
-        args=trimmed.split(" ",argLimit);
-        WHBot.logger.log(Level.INFO,"Split Message '"+trimmed+"' into:");
-        for(String value : args){
-            System.out.println(value);
+        args = trimmed.split(" ", argLimit);
+        WHBot.logger.log(Level.INFO, "Split Message '" + trimmed + "' into:");
+        for (String value : args) {
+            WHBot.logger.log(Level.INFO, "'"+value+"'");
         }
+        WHBot.logger.log(Level.INFO, "(Length of " + args.length + ")");
         return args;
     }
 }
