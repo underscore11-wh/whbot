@@ -3,6 +3,7 @@ package com.gmail.minecrafter11mrt;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.channel.TextChannel;
+import org.javacord.api.entity.permission.Role;
 import org.javacord.api.entity.user.User;
 
 import java.util.logging.Level;
@@ -11,12 +12,14 @@ import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class WHBot extends JavaPlugin {
-    static String ver = "v0.2.26";
+    static String ver = "v0.3.0";
     static DiscordApi api;
     static User botowner;
     static Logger logger;
     static TextChannel borderForce;
     static Level loglevel;
+    static Role precit;
+    static Role cit;
     @Override
     public void onEnable() {
         long startTime=System.currentTimeMillis();
@@ -36,7 +39,14 @@ public class WHBot extends JavaPlugin {
         api.getTextChannelById(this.getConfig().getLong("channels.border-force")).ifPresent(textChannel -> {
             borderForce=textChannel;
         });
+        api.getRoleById(this.getConfig().getLong("roles.pre-citizen")).ifPresent(role -> {
+            precit=role;
+        });
+        api.getRoleById(this.getConfig().getLong("roles.citizen")).ifPresent(role -> {
+            cit=role;
+        });
         api.addListener(new MessageListener());
+        api.addListener(new JoinListener());
         api.updateActivity("-help | "+ver);
         long totaltime=startTime-System.currentTimeMillis();
         logger.log(Level.INFO,"Done! Init took "+totaltime+"ms");
