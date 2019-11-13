@@ -18,8 +18,8 @@ public class WHBot extends JavaPlugin {
     static Logger logger;
     static TextChannel borderForce;
     static Level loglevel;
-    static Role precit;
-    static Role cit;
+    //static Role precit;
+    //static Role cit;
     @Override
     public void onEnable() {
         long startTime=System.currentTimeMillis();
@@ -39,14 +39,14 @@ public class WHBot extends JavaPlugin {
         api.getTextChannelById(this.getConfig().getLong("channels.border-force")).ifPresent(textChannel -> {
             borderForce=textChannel;
         });
-        api.getRoleById(this.getConfig().getLong("roles.pre-citizen")).ifPresent(role -> {
+        /*api.getRoleById(this.getConfig().getLong("roles.pre-citizen")).ifPresent(role -> {
             precit=role;
         });
         api.getRoleById(this.getConfig().getLong("roles.citizen")).ifPresent(role -> {
             cit=role;
-        });
+        });*/
         api.addListener(new MessageListener());
-        api.addListener(new JoinListener());
+        //api.addListener(new JoinListener());
         api.updateActivity("-help | "+ver);
         long totaltime=startTime-System.currentTimeMillis();
         logger.log(Level.INFO,"Done! Init took "+totaltime+"ms");
