@@ -6,6 +6,6 @@ import org.javacord.api.listener.server.member.ServerMemberJoinListener;
 public class JoinListener implements ServerMemberJoinListener {
     @Override
     public void onServerMemberJoin(ServerMemberJoinEvent event){
-        event.getUser().addRole(WHBot.precit);
+        //event.getUser().addRole(WHBot.precit);
     }
 }
